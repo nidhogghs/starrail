@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>星铁乘区 Wiki</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;700&family=Noto+Sans+SC:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page-shell">
+      <header class="hero">
+        <div class="hero-copy">
+          <p class="eyebrow">Honkai: Star Rail Multiplier Wiki</p>
+          <h1>角色技能、乘区汇总与阵容计算</h1>
+          <p class="hero-text">
+            同一套数据同时用于角色浏览和阵容计算。可以先查看任意角色的技能乘区，再把角色拖进阵容位，叠加辅助后看最终相对输出。
+          </p>
+        </div>
+        <div class="hero-stats" id="hero-stats"></div>
+      </header>
+
+      <main class="content-grid">
+        <section class="panel browser-panel">
+          <div class="panel-head">
+            <div>
+              <p class="panel-kicker">角色浏览</p>
+              <h2>技能与乘区</h2>
+            </div>
+            <label class="field compact">
+              <span>角色</span>
+              <select id="browse-role"></select>
+            </label>
+          </div>
+
+          <div class="role-meta" id="role-meta"></div>
+          <div class="row-list" id="row-list"></div>
+          <div class="row-detail" id="row-detail"></div>
+        </section>
+
+        <aside class="sidebar-stack">
+          <section class="panel team-panel">
+            <div class="panel-head">
+              <div>
+                <p class="panel-kicker">阵容</p>
+                <h2>空阵容位</h2>
+              </div>
+            </div>
+            <div class="team-slots" id="team-slots"></div>
+          </section>
+
+          <section class="panel calc-panel">
+            <div class="panel-head">
+              <div>
+                <p class="panel-kicker">计算器</p>
+                <h2>主C与敌人参数</h2>
+              </div>
+            </div>
+
+            <div class="field-grid">
+              <label class="field">
+                <span>主C角色</span>
+                <select id="focus-role"></select>
+              </label>
+              <label class="field">
+                <span>技能条目</span>
+                <select id="focus-row"></select>
+              </label>
+              <label class="field">
+                <span>攻击者等级</span>
+                <input id="attacker-level" type="number" min="1" max="100" />
+              </label>
+              <label class="field">
+                <span>敌方等级</span>
+                <input id="enemy-level" type="number" min="1" max="100" />
+              </label>
+              <label class="field">
+                <span>行动值长度</span>
+                <input id="action-value-limit" type="number" min="1" step="1" />
+              </label>
+              <label class="field">
+                <span>敌方基础抗性%</span>
+                <input id="enemy-resistance" type="number" min="-100" max="90" step="1" />
+              </label>
+              <label class="field">
+                <span>敌方减伤%</span>
+                <input id="enemy-damage-reduction" type="number" min="0" max="90" step="1" />
+              </label>
+              <label class="field">
+                <span>基础暴击率%</span>
+                <input id="base-crit-rate" type="number" min="0" max="100" step="1" />
+              </label>
+              <label class="field">
+                <span>基础暴伤%</span>
+                <input id="base-crit-damage" type="number" min="0" max="500" step="1" />
+              </label>
+            </div>
+
+            <label class="toggle">
+              <input id="enemy-broken" type="checkbox" />
+              <span>敌人已处于击破状态</span>
+            </label>
+
+            <div class="special-settings" id="special-settings"></div>
+          </section>
+
+          <section class="panel result-panel">
+            <div class="panel-head">
+              <div>
+                <p class="panel-kicker">结果</p>
+                <h2>阵容乘区与最终指数</h2>
+              </div>
+            </div>
+            <div class="result-cards" id="result-cards"></div>
+            <div class="formula-breakdown" id="formula-breakdown"></div>
+            <div class="timeline-panel" id="timeline-panel"></div>
+            <div class="bucket-table-wrap">
+              <table class="bucket-table">
+                <thead>
+                  <tr>
+                    <th>乘区</th>
+                    <th>数值</th>
+                  </tr>
+                </thead>
+                <tbody id="bucket-table-body"></tbody>
+              </table>
+            </div>
+            <div class="applied-buffs" id="applied-buffs"></div>
+          </section>
+        </aside>
+      </main>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="action_logic.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
